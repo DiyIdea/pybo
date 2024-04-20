@@ -9,8 +9,8 @@ from .models import Question, Answer
 def index(request) : #url.py 에서 path('',view.index)로 참조중.
    #return HttpResponse("안녕하세요 pybo에 오신것을 환영합니다.")(삭제 2-04에서)
     question_list = Question.objects.order_by('-create_date')
-    context = {'Question_list' : question_list}
-    return render(request, 'pybo/question_list.html', context)
+    context = {'question_list' : question_list}
+    return render(request, 'pybo/question_list.html', context)# qustion_list.html로
 
 def detail(request, question_id): #url.py 에서 path('<int:question_id>/',view.detail)로 참조중.
     question = get_object_or_404(Question, pk=question_id) #Question.objects.get(id=question_id) #2-04 페이지추가 및 삭제
