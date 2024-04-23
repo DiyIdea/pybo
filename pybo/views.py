@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect # 2-04 "404페이지 추가,
 from django.utils import timezone
 from .models import Question, Answer
+from .forms import QuestionForm
+
 
 def index(request) : #url.py 에서 path('',view.index)로 참조중.
    #return HttpResponse("안녕하세요 pybo에 오신것을 환영합니다.")(삭제 2-04에서)
@@ -23,3 +25,7 @@ def answer_create(request, question_id):
     answer.save()
     #question.answer_set.create(content=request.POST.get('content'), create_date=timezone.now())
     return redirect('pybo:detail', question_id=question.id)
+
+def question_create(request):
+    form = QuestionForm()
+    return render(request, 'pybo/question_form.html', {'form': form})
